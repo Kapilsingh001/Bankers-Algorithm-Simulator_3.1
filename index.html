@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banker's Algorithm Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Banker's Algorithm</h1>
+
+    <!-- ================= INPUT SECTION ================= -->
+    <div id="wrapper">
+
+        <div id="inputs">
+            <p>
+                Enter number of processes :
+                <input type="text" id="numProcess">
+            </p>
+
+            <p>
+                Enter types of resources :
+                <input type="text" id="numResource">
+            </p>
+        </div>
+
+        <!-- ================= BUTTONS ================= -->
+        <div id="buttons">
+
+            <!-- STEP 1 -->
+            <input type="button"
+                   value="Create Tables"
+                   onclick="createAllInitialTables()">
+            <br>
+
+            <!-- STEP 2 -->
+            <input type="button"
+                   id="findNeed"
+                   value="Find Need"
+                   onclick="createNeedTable()"
+                   disabled>
+
+            &nbsp;&nbsp;&nbsp;
+
+            <!-- STEP 3 -->
+            <input type="button"
+                   id="findAvailable"
+                   value="Find Available"
+                   onclick="createAvailableTable()"
+                   disabled>
+            <br>
+
+            <!-- STEP 4 -->
+            <input type="button"
+                   id="safeSequence"
+                   value="Find Safe Sequence"
+                   onclick="startSafeSequence()"
+                   disabled>
+            <br>
+
+            <!-- STEP 5 -->
+            <input type="button"
+                   id="resourceRequest"
+                   value="Make a Resource Request"
+                   onclick="resourceRequest()"
+                   disabled>
+            <br>
+
+            <!-- FUTURE -->
+            <!-- <input type="button"
+                   id="checkSafety"
+                   value="Check Safe State"
+                   disabled>
+            <br> -->
+
+            <!-- RESET -->
+            <input type="button"
+                   value="Reset"
+                   onclick="reset()">
+
+        </div>
+    </div>
+
+   
+    <!-- ================= TABLE OUTPUT ================= -->
+<div id="allTables"></div>
+
+<!-- Original Safe Sequence (before any request) -->
+<div id="safeSequenceContainer"></div>
+
+<!-- Safe Sequence After Granting a Request -->
+<div id="safeSequenceAfterGrantContainer"></div>
+
+
+
+    <!-- ================= RESOURCE REQUEST SECTION ================= -->
+    <div id="resourceRequestPart" style="display:none;">
+        <br>
+        <hr>
+
+        <h3>Resource Request</h3>
+
+        <p>
+            Enter process number that wants to make request :
+            <input type="text" id="requestProcess">
+        </p>
+
+        <p>
+            <button onclick="submitResourceRequest()">
+                Submit Request
+            </button>
+        </p>
+    </div>
+
+    <!-- Resource request inputs (A, B, C will appear here) -->
+    <div id="makeResourceRequest"></div>
+
+    <!-- Custom Safe Request Confirmation -->
+<div id="safeRequestBox" style="display:none;">
+    <p class="safe-msg">✅ Request is SAFE.</p>
+    <p>Do you want to commit allocation?</p>
+    <p>Ok -> TO KEEP THE CHANGES</p>
+    <p>Cancel ->NOT TO KEEP CHANGES </p>
+
+    <button id="confirmGrant">OK</button>
+    <button id="cancelGrant">Cancel</button>
+</div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script src="code.js"></script>
+
+</body>
+</html>
